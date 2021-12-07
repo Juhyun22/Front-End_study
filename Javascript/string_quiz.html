@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>javascript string quiz</title>
+    </head>
+    <body>
+        <script>
+            // 1. 길이 제한
+            var userId = "my_id_very_simple";
+
+            if (userId.length > 8) {
+                // alert("id는 8자를 넘길 수 없습니다." + userId.slice(0, 8));
+            }
+
+            // 2. 파일 이름
+            var path = "/Users/master/Document/image/city.jpg";
+            let pathParts = path.split("/");
+            // 1) 배열 이용
+            var file = pathParts[pathParts.length-1];
+            console.log(file);
+            // 2) for of문 이용
+            for (let values of pathParts) {
+                if (values.includes(".jpg")){
+                    file = values;
+                }
+            }
+            console.log(file);
+
+            // 3. 데이터 정리
+            var info = {
+                "name":"신보람",
+                "phoneNumber":"01012345678",
+                "introduce":"       안녕하세요. 저는 고양이 집사입니다.     "
+            };
+
+            console.log("이름: " + info.name + ", 전화번호: " + info.phoneNumber + ", 소개: " + info.introduce.trim());
+
+            // 4. 문자열 데이터
+            var memberString = "루피:19931015,조로:19890513,나미:19970705,쵸파:20040932";
+            let memberParts = memberString.split(",");
+            // console.log(memberParts);
+            var members = [];
+            
+            // (1) 첫번째 방법
+            for (let i = 0; i < memberParts.length; i++) {
+                var memPart = memberParts[i].split(":");
+                var member = {};
+                // console.log("memPart0: " + memPart[0]);
+                member['name'] = memPart[0];
+                member['birth'] = memPart[1];
+
+                members.push(member);
+            }
+            console.log(members);
+
+            // (2) 두번째 방법
+            for (member of memberParts) {
+                var memberInfo = member.split(":");
+                members.push({'name':memberInfo[0], 'birth':memberInfo[1]});
+            }
+            console.log(members);
+
+            
+        </script>
+    </body>
+</html>
