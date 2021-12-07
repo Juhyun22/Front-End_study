@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>제목</title>
+        <meta charset="utf-8">
+
+        <!-- jQuert CDN link -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" 
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
+        crossorigin="anonymous"></script>
+
+        <style>
+            .box {width: 100px; height: 100px; background-color: aquamarine;}
+            .box-font {font-size: 20px; font-weight: normal; color: violet;}
+        </style>
+        <script>
+            // ready 함수: DOM tree가 모두 구성된 후 불려지는 함수
+            $(document).ready(function() {
+
+                // (1) 버튼 클릭 이벤트
+                $('#confirmBtn').on('click', function(e) {
+                    // alert("버튼 클릭");
+
+                    // id="text"에 있는 내용 가져오기
+                    let text = $('#text').val();
+                    // alert(text);
+
+                    // text validation
+                    text = text.trim(); // 문자열 앞 뒤 공백 제거
+
+                    if (text.length < 1) {
+                        alert("텍스트 영역에 글자를 써주세요.");
+                        return; // 함수 종료
+                    }
+
+                    // id="copyText"에 text 내용을 넣기
+                    $('#copyText').val(text);
+                });
+
+                // (2) div안에 글자 넣기
+                $('#textInDivBtn').on('click', function(e) {
+                    // alert("버튼 클릭");
+                    $('.box').text("박스 안에 글씨!");
+                });
+
+                // (3) 상자 없애기, 나타내기
+                $('.link1').on('click', function(e) {
+                    // 상자 없애기
+                    // $('.box').css("display", 'none');
+
+                    // 1) 상자 없으면 나타내고, 있으면 없애기1
+                    // if ($('.box').css('display') == 'none') {
+                    //    $('.box').css('display', 'block');
+                    // } else {
+                    //     $('.box').css('display', 'none');
+                    // }
+
+                    // 2) 상자가 없으면 나타내고, 있으면 없애기2
+                    if ($('#box1').is(":visible")) {
+                        $('#box1').hide();
+                    } else {
+                        $('#box1').show();
+                    }
+                });
+
+                // (4) 폰트 변경 클릭 이벤트
+                $('#fontChangeBtn').on('click', function(e) {
+                    // alert("클릭");
+                    // $('#box1').addClass('box-font');
+                    
+                    // 태그 안에 class가 존재하는지 확인
+                    if ($('#box1').hasClass('box-font')) {
+                        $('#box1').removeClass('box-font');
+                    } else {
+                        $('#box1').addClass('box-font');
+                    }
+                });
+
+                // (5) href 속성값 변경하기
+                $('#gotoGoogle').on('click', function(e) {
+                    // href 속성값 변경하기
+                    $('#gotoGoogle').attr('href', 'https://google.com');
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <!-- '확인' 버튼 누르면 담긴 내용 alert 띄우기 -->
+        텍스트: <input type="text" id="text">
+        <button type="button" id="confirmBtn">확인</button><br>
+        복사된 텍스트: <input type="text" id="copyText">
+        <br><br><hr>
+
+        <!-- 박스 선언 -->
+        <div id="box1" class="box"></div><br>
+        <!-- 박스 안에 글씨 -->
+        <input type="button" id="textInDivBtn" value="클릭하면 박스에 글자가 들어갑니다.">
+        <br><br>
+        <!-- 박스 있다가 없다가 -->
+        <a href="#" class="link1">박스가 사라졌다, 나타났다</a>
+        <br><br>
+        <!-- 상자 안 글씨 상태 -->
+        <button type="button" id="fontChangeBtn">클릭하면 상자 글씨 상태가 바뀝니다.</button>
+        <br><br>
+        <!-- 구글로 가가 -->
+        <a id="gotoGoogle" href="http://naver.com" target="_blank">클릭하면 구글로 갑니다.</a>
+    </body>
+</html>
