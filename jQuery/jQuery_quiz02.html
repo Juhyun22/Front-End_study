@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>문제2</title>
+        <meta charset="utf-8">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" 
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
+        crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- 3. 전체 선택 -->
+        <h2>3. 전체 선택</h2>
+        <label>전체 선택<input type="checkbox" id="checkAll" name="checkAll" value="checkAll"></label><br>
+        <label>개인정보 활용 동의<input type="checkbox" id="personalCheck" name="check" value="personalCheck"></label>
+        <label>서비스 이용 동의<input type="checkbox" id="serviceCheck" name="check" value="serviceCheck"></label>
+        <label>마케팅 활용 동의<input type="checkbox" id="marketingCheck" name="check" value="marketingCheck"></label>
+        <br><hr>
+
+        <!-- 4. 길이 제한 -->
+        <h2>4. 길이 제한</h2>
+        <input type="text" id="text">
+
+        <script>
+            $(document).ready(function(e) {
+                // 3. 전체 선택
+                $('#checkAll').on('change', function(e) {
+                    let checkAll = $(this).prop('checked');
+                    // console.log(checkAll);
+                    $('input[name=check]').prop('checked', checkAll);
+                });
+
+                // 4. 길이 제한
+                $('#text').keyup('click', function(e) {
+                    var text = $(this).val();
+
+                    if (text.length >= 5) {
+                        $(this).val(text.substring(0, 5));
+                        alert("다섯자를 초과하여 입력할 수 없습니다.");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
