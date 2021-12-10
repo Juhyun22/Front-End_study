@@ -31,14 +31,25 @@
                 });
 
                 // 4. 길이 제한
-                $('#text').keyup('click', function(e) {
-                    var text = $(this).val();
-
-                    if (text.length >= 5) {
-                        $(this).val(text.substring(0, 5));
+                // keyup 이벤트: 키를 뗄 때 동작하므로 5자를 넘을 수 있다.
+                // input 이벤트: 키를 하나 눌렀을 때 동작하는 이벤트
+                //$('#text').keyup('input', function(e) {
+                  //   var text = $(this).val();
+                    //
+                    // if (text.length >= 5) {
+                       // $(this).val(text.substring(0, 5));
+                        //alert("다섯자를 초과하여 입력할 수 없습니다.");
+                    //}
+                //});
+                $('#text').on('input', function(e) {
+                    let text = $(this).val();
+                    if (text.length > 5) {
+                        text = text.slice(0, 5);
+                        $(this).val(text);
                         alert("다섯자를 초과하여 입력할 수 없습니다.");
                     }
                 });
+
             });
         </script>
     </body>
